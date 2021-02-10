@@ -2,13 +2,13 @@ import re
 
 def eliza_prompt():
     # print('Hello, my name is Eliza, your therapist. What is your name?')
-    # name = input('> ')
+    name = input('> ')
     # print(name)
 
-    sentance_to_search='My name is cassie'
+    #sentance_to_search='My name is cassie'
     pattern = re.compile(r'[Mm]y name is (\w+)')
 
-    matches = pattern.sub(r'\1', sentance_to_search)
+    matches = pattern.sub(r'Hi \1, how are you?', name)
     print(matches)
 
 
