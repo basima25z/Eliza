@@ -4,7 +4,8 @@ def eliza_prompt():
     # print('Hello, my name is Eliza, your therapist. What is your name?')
     name = input('> ')
     # match_object = re.match(r'[Mm]y name is (\w+)', name)
-    # print(match_object.group(0))
+    match_object = re.match(r"[Ii] am feeling  (?:happy)", name )
+    print(match_object.group(1))
 
     #TODOS
     # Get input --> see if it matches any sentances 
@@ -17,9 +18,9 @@ def eliza_prompt():
     # print(name)
 
     #sentance_to_search='My name is cassie'
-    pattern = re.compile(r'[Mm]y name is (\w+)')
-    matches = pattern.sub(r'Hi \1, how are you?', name)
-    print(matches)
+    # pattern = re.compile(r'[Mm]y name is (\w+)')
+    # matches = pattern.sub(r'Hi \1, how are you?', name)
+    # print(matches)
 
 
     # match = re.match(r'[Mm]y name is (\w+)', name)
@@ -59,29 +60,68 @@ def eliza_prompt():
 #     #     matches = re.sub(r'Hi \1, how are you?', name)
 #     #     print(matches)
 
-regex=[(re.compile(r"[Mm]y name is (\w+)"), r"Hi \0, how are you feeling?")]
+regex=[
+    (re.compile(r"[Mm]y name is (\w+)"), r"Hi \0, how are you feeling?"),
+    (re.compile(r"[Ii] feel ([\w\s]+)"), r"How often do you feel \0?"),
+    (re.compile(r"[Ii] am feeling (?:happy)"), r"Glad to hear! how did that happen?"),
+    (re.compile(r"[[\w\s]+very often"), r"why do you feel that way often?"),
+    (re.compile(r"(.*) brother (.*) "), r"Tell me about your brother.")
+    ]
         
 
 def eliza():
-    print('Hello, my name is Eliza, your therapist. What is your name?')
-    userInput =''
+    # print('Hello, my name is Eliza, your therapist. What is your name?')
+    # userInput =''
     
-    while userInput != "exit":
-        userInput=input(">>>")
+    # while userInput != "exit":
+    #     userInput=input(">>>")
     
-        print(responses(userInput))
+    #     print(responses(userInput))
+    print('My name is Eliza, your personal therapist, What is your name?')
+    s = ''
+    while s != 'exit':
+        try:
+            s = input('>>> ')
+        except EOFError:
+            s = 'exit'
+        print(responses(s))
+
+        while s[-1] in '!.':
+            s = s[:-1]
 
 def responses(userInput):
     for key,value in regex:
-        match = key.match(userInput).group(1)
-        if key.search(userInput):
-            value = value.replace(r'\1',match)
-            print(match)
+        #match = key.match(userInput).group(1)
+        if key.search(userInput):#match:
+            if key.match(userInput).groups():
+                match = key.match(userInput).group(1)
+                print(match)
+                response = value.replace(r'\0',match)
+            #elif key.match(userInput).group(0):
+                #response = value
+            else:
+                response=value
+            
+            return response
+        #else:
+            #print("no match")
+            #return value
+    
+            # else:
+            #     print("no group")
+
+
+
+            #match = key.match(userInput).group(1)
+
+            
+            #response = value.replace(r'\0',match)
+            #print(match)
+        # else:
+        # #     match= key.match(userInput).group(2)
+        # #     print(match)
         
-        return value
-
-
-
+            
 
 
 if __name__=="__main__":
