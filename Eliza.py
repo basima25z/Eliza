@@ -62,10 +62,12 @@ def eliza_prompt():
 
 regex=[
     (re.compile(r"[Mm]y name is (\w+)"), r"Hi \0, how are you feeling?"),
-    (re.compile(r"[Ii] feel ([\w\s]+)"), r"How often do you feel \0?"),
+    (re.compile(r"[Ii] feel ([\w\s]+)"), r"Do you feel \0 often?"),
     (re.compile(r"[Ii] am feeling (?:happy)"), r"Glad to hear! how did that happen?"),
     (re.compile(r"[[\w\s]+very often"), r"why do you feel that way often?"),
-    (re.compile(r"(.*) brother (.*) "), r"Tell me about your brother.")
+    (re.compile(r"[[\w\s]+often"), r"Why do you think you feel that way often?"),
+    (re.compile(r"(.*) brother (.*) "), r"Tell me about your brother."),
+    (re.compile(r"[Ii] went to (?:the) ([\w\s]+)"), r"What did you do there?")
     ]
         
 
