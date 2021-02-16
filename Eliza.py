@@ -42,6 +42,8 @@ import re
 # Eliza: Why don't you have a car?
 # >>> I think I am bad at saving
 # Eliza: Why do you think you are bad at saving?
+# >>> I think money is hard to save
+# Eliza: Why do you think money is hard to save?
 ####################################################
 
 
