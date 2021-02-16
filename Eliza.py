@@ -44,6 +44,10 @@ import re
 # Eliza: Why do you think you are bad at saving?
 # >>> I think money is hard to save
 # Eliza: Why do you think money is hard to save?
+# >>> My dad never taught me the importance
+# Eliza: Can you tell me more about your dad?
+# >> exit
+# Eliza: Have a nice day!
 ####################################################
 
 
